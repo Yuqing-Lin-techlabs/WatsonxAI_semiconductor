@@ -1,0 +1,21 @@
+Fname
+BatchID
+Fidx
+elapsed time
+optical density
+Monitor photo density
+stage temperature
+sample temperature
+monitor temperature
+Type
+Rxx State
+Rxy State
+sheet resistance
+Hall resistance
+Hall resistivity
+conductivity
+Hall coefficient
+sigma square hall coefficient
+Hall density
+Hall mobility
+wavelength
