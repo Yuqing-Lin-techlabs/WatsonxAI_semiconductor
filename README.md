@@ -1,11 +1,11 @@
 # WatsonxAI_semiconductor
 
 
-## Task 1: Generate data grounded insights
+## Task 1: Generate data-grounded insights
 
 ### Task 1a: Analyze LLM understanding in answering statistical questions from data
 
-The task here is given the input data model should be able to answer several statstical question such as user should be able to answer what is min/max/avg…. number in a column. 
+The task here is given the input data model should be able to answer several statistical questions such as LLM should be able to answer what is min/max/avg…. number in a column. 
 
 - Input Prompt:
   - Data 
@@ -16,7 +16,7 @@ The task here is given the input data model should be able to answer several sta
     - A2:
   - QN: User input 
 
-### Task 1b: LLM to understand more complex phenomenon
+### Task 1b: LLM to understand the more complex phenomenon
 
 
 - Input Prompt:
@@ -33,7 +33,7 @@ The task here is given the input data model should be able to answer several sta
 ### Requirements
 
 
-- Since we are limited by the number of tokens in the prompt, we need to find better ways to concisely fit the data files into prompt.
+- Since we are limited by the number of tokens in the prompt, we need to find better ways to fit the data files into the prompt concisely.
 - Let’s fix to 2-3 phenomenon for now. 
 - @Yueheng you decide what definitions you think are less complex and fix those definitions for now
 - We need phenomenon definitions [@Yueheng]
