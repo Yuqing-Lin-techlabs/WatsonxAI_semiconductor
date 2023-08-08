@@ -1,12 +1,33 @@
 import os
 import csv
 from pathlib import Path
+import pandas as pd
 
 PROMPTS_DIR = Path(__file__).parent / "prompts"
 DATA_DIR = Path(__file__).parent / "data"
 
 SEPERATOR = ','
 DROP_COLUMNS = ['Fname', 'stage temperature', 'monitor temperature', 'Rxx State', 'Rxy State']
+
+
+def read_column_description():
+    """
+
+    Returns:
+    """
+
+    fn = os.path.join(DATA_DIR, "column_description.txt")
+    with open(fn, "r") as f:
+        cn_wds = f.readlines()
+    cn_wds = [cn_line.strip() for cn_line in cn_wds]
+    cns = []
+    wds = []
+    for cn_wd in cn_wds:
+        cns.append(cn_wd.split(":")[0])
+        wds.append(":".join(cn_wd.split(":")[1:]))
+    df = pd.DataFrame(zip(cns, wds), columns=["column", "description"])
+    return df
+
 
 
 def csv2txt(file_name):
