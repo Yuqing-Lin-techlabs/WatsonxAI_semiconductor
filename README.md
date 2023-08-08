@@ -49,6 +49,9 @@ plot generation
 - `conda create -n watsonx python==3.10`
 - `conda activate watsonx`
 - `pip install ibm-watson-machine-learning`
+- `conda install -c conda-forge langchain`
+- `pip install chardet`
+- `pip install cchardet`
 - Our project key is common, so I left it as it is in the code
   - You can find it here https://dataplatform.cloud.ibm.com/projects/0beb9015-cd6d-467e-84a6-99f07254c022/manage/general?context=wx
 - you also need IBM cloud key which is personal.

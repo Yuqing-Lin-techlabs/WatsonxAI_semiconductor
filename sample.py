@@ -2,7 +2,7 @@ import os
 from ibm_watson_machine_learning.foundation_models.utils.enums import ModelTypes
 from ibm_watson_machine_learning.foundation_models import Model
 import json
-from data_util import DATA_DIR, csv2txt, read_column_description, csv2prompt_data
+from data_util import csv2txt, read_column_description, csv2prompt_data
 
 IBM_CLOUD_API_KEY = os.getenv("IBM_CLOUD_API_KEY")
 PROJECT_ID = "0beb9015-cd6d-467e-84a6-99f07254c022"
