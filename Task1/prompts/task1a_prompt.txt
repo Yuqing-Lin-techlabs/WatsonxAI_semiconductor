@@ -1,5 +1,6 @@
 Answer the following question using only information from the table. If there is no good answer in the article, say "I don't know".
 
+Table:
 ###
 {data}
 ###

@@ -21,12 +21,11 @@ project_id = PROJECT_ID
 space_id = None
 verify = False
 
-model = Model(model_id, my_credentials, gen_parms, project_id, space_id, verify )
+model = Model(model_id, my_credentials, gen_parms, project_id, space_id, verify)
 
 model_details = model.get_details()
 
 print(json.dumps(model_details, indent=2))
-
 
 ### Model output Generation
 prompt_txt = "In today's sales meeting, we "
@@ -36,22 +35,20 @@ generated_response = model.generate(prompt_txt, gen_parms_override)
 
 print(json.dumps(generated_response, indent=2))
 
-
 with open(csv2txt("TB_demo_v2.csv"), "r") as f:
     txt_data = f.readlines()
 
 clm_nm = read_column_description()
 all_column_list = ["BatchID", "Fidx", "elapsed time", "optical density", "Monitor photo density", "stage temperature",
-                        "sample temperature", "monitor temperature", "Type", "Rxx State", "Rxy State", "sheet resistance",
-                        "Hall resistance", "Hall resistivity", "conductivity", "Hall coefficient", "sigma square hall coefficient",
-                        "Hall density", "Hall mobility", "wavelength"
-                      ]
+                   "sample temperature", "monitor temperature", "Type", "Rxx State", "Rxy State", "sheet resistance",
+                   "Hall resistance", "Hall resistivity", "conductivity", "Hall coefficient",
+                   "sigma square hall coefficient",
+                   "Hall density", "Hall mobility", "wavelength"
+                   ]
 useful_column_list = ["BatchID", "Fidx", "elapsed time", "optical density", "Monitor photo density", "sheet resistance",
-                        "Hall resistance", "Hall resistivity", "conductivity", "Hall coefficient", "sigma square hall coefficient",
-                        "Hall density" ]
+                      "Hall resistance", "Hall resistivity", "conductivity", "Hall coefficient",
+                      "sigma square hall coefficient",
+                      "Hall density"]
 string = csv2prompt_data("TB_demo_v2.csv", column_list=useful_column_list, max_rows=10)
 print(string)
 print("text")
-
-
-
