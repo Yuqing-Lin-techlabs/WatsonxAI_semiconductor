@@ -41,5 +41,17 @@ The task here is given the input data model should be able to answer several sta
 - Specify what columns are important for what phenomenon.  [@Yueheng]
 
 ## Task 2: Plot Generation 
+plot generation
 
+---
+
+## Setup
+- `conda create -n watsonx python==3.10`
+- `conda activate watsonx`
+- `pip install ibm-watson-machine-learning`
+- Our project key is common, so I left it as it is in the code
+  - You can find it here https://dataplatform.cloud.ibm.com/projects/0beb9015-cd6d-467e-84a6-99f07254c022/manage/general?context=wx
+- you also need IBM cloud key which is personal.
+  - First create your CLOUD API key https://cloud.ibm.com/iam/apikeys
+  - and save it to your bash as `export IBM_CLOUD_API_KEY=<key>`
 
