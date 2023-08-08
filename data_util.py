@@ -52,6 +52,8 @@ def csv2prompt_data(file_name: str, column_list = None, max_rows = None, separat
     with open(os.path.join(DATA_DIR, file_name), mode='r', newline='') as r:
         reader = csv.reader(r)
         for i, row in enumerate(reader):
+            if max_rows is not None and i >= max_rows + 1:
+                break
             if column_list is None:
                 prompt_data.append(separator.join(row))
             else:
@@ -60,7 +62,6 @@ def csv2prompt_data(file_name: str, column_list = None, max_rows = None, separat
                 filtered = [elem for idx, elem in enumerate(row) if idx in col_idx]
                 prompt_data.append(separator.join(filtered))
 
-    # + 1 including the header row
-    max_rows = len(prompt_data) if max_rows is None else max_rows + 1
+    return os.linesep.join(prompt_data)
 
-    return os.linesep.join(prompt_data[0:max_rows])
+print(csv2prompt_data('TB_demo_v2.csv', column_list=['BatchID', 'Fidx', 'elapsed time', 'sigma square hall coefficient', 'conductivity'], max_rows = 3, separator = ', '))
