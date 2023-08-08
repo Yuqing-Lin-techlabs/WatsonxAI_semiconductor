@@ -30,13 +30,13 @@ def csv2txt(file_name):
     return out_fn
 
 
-def csv2prompt_data(file_name: str, column_list: list, max_rows: int):
+def csv2prompt_data(file_name: str, column_list = None, max_rows = None, separator = ' | '):
     """
 
     Args:
         file_name: str: string filename
-        column_list: list: list of columns to keep
-        max_rows: int: max number of rows. default all rows
+        column_list: list: list of columns to keep, default all columns
+        max_rows: int: max number of rows, default all rows
 
     Returns: str:
     return format
@@ -48,8 +48,19 @@ def csv2prompt_data(file_name: str, column_list: list, max_rows: int):
     P1HB | 5 | 739085.5353 | 0.000111971 | 0.005793127
 
     """
+    prompt_data = []
+    with open(os.path.join(DATA_DIR, file_name), mode='r', newline='') as r:
+        reader = csv.reader(r)
+        for i, row in enumerate(reader):
+            if column_list is None:
+                prompt_data.append(separator.join(row))
+            else:
+                if i == 0:
+                    col_idx = [row.index(col.strip()) for col in column_list]
+                filtered = [elem for idx, elem in enumerate(row) if idx in col_idx]
+                prompt_data.append(separator.join(filtered))
 
-    prompt_data = ""
+    # + 1 including the header row
+    max_rows = len(prompt_data) if max_rows is None else max_rows + 1
 
-    return prompt_data
-
+    return os.linesep.join(prompt_data[0:max_rows])
