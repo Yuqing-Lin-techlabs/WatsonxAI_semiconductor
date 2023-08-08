@@ -1,21 +1,21 @@
-Fname
-BatchID
-Fidx
-elapsed time
-optical density
-Monitor photo density
-stage temperature
-sample temperature
-monitor temperature
-Type
-Rxx State
-Rxy State
-sheet resistance
-Hall resistance
-Hall resistivity
-conductivity
-Hall coefficient
-sigma square hall coefficient
-Hall density
-Hall mobility
-wavelength
+Fname: Filename of the raw data.
+BatchID: Index of the experiment in a batch. 
+Fidx: Index of the file in an experiment. 
+elapsed time: (s).
+optical density: a measure of how much a substance absorbs light. It is commonly used in various scientific fields. 
+Monitor photo density: the photo density detected on the monitor (A).
+stage temperature: the temperature measured on the stage (K).
+sample temperature: the temperature measured on the sample (K).
+monitor temperature: the temperature measured on the monitor (K).
+Type: the type of the carriers (either n or p).
+Rxx State: the state of the longitudinal magnetoresistance sweep
+Rxy State: the state of the transverse magnetoresistance sweep
+sheet resistance: For hall bar sample, the sheet resistance is obtained by measuring two states and eight states of longitudinal magnetoresistance for six-terminal hall bar and four-terminal van der Pauw samples, respectively. (Ohm/sq) 
+Hall resistance: Hall resistance (Hall signal) is obtained using numerical lock-in detection (Ohm).
+Hall resistivity: When a current is passed through a conductor or semiconductor in the presence of a perpendicular magnetic field, a voltage (Hall voltage) develops in the direction perpendicular to both the current flow and the magnetic field. (Ohm.cm)
+conductivity: the conductivity of material (Ohm).
+Hall coefficient: Hall coefficient is related to the Hall resistivity and is given by: conductivity/the applied magnetic field. (m^3/C)
+sigma square hall coefficient: the square of conductivity times hall coefficient. (S^2m/C)
+Hall density: carrier density is defined as the Hall scattering factor devided by the product of Hall coefficient and electron charge(/cm^3)
+Hall mobility: carrier mobility measures how quickly carriers (either electrons or holes) can move through a semiconductor material under the influence of an electric field, especially when the movement is affected by an external magnetic field. It can be defined as conductivity times Hall coefficient(cm^2/Vs).
+wavelength: the wavelength of the laser. (nm)
