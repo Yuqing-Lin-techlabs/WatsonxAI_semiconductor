@@ -84,5 +84,3 @@ def csv2prompt_data(file_name: str, column_list = None, max_rows = None, separat
                 prompt_data.append(separator.join(filtered))
 
     return os.linesep.join(prompt_data)
-
-print(csv2prompt_data('TB_demo_v2.csv', column_list=['BatchID', 'Fidx', 'elapsed time', 'sigma square hall coefficient', 'conductivity'], max_rows = 3, separator = ', '))
