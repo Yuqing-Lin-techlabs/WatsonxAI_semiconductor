@@ -51,7 +51,11 @@ def csv2txt(file_name):
     return out_fn
 
 
-def csv2prompt_data(file_name: str, column_list = None, max_rows = None, separator = ' | '):
+def csv2prompt_data(file_name: str,
+                    column_list: list = None,
+                    max_rows: int = None,
+                    separator: str = ' | '
+                    ):
     """
 
     Args:
