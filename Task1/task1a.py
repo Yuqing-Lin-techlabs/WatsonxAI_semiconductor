@@ -25,9 +25,9 @@ useful_column_list = ["BatchID", "Fidx", "elapsed time", "optical density", "Mon
                       "Hall density"]
 data= csv2prompt_data("TB_demo_v2.csv", column_list=useful_column_list, max_rows=10)
 df = pd.read_csv(os.path.join(DATA_DIR,"TB_demo_v2.csv"))
-model = llm()
+model = llm(model_id=ModelTypes.FLAN_UL2)
 
-
+demonstrations = ""
 # demonstrations = """
 # Q: What is the "sigma square hall coefficient" value when "conductivity" is 0.005789713?
 # A: 0.000112568
@@ -36,13 +36,18 @@ model = llm()
 # A: 0.005780041
 # """
 question = "Write a pandas dataframe query for finding the \"sigma square hall coefficient\" value when \"conductivity\" is 0.005789713"
+# question = "What is the elapsed time when Fidx is 3?" #739085.5217
+# question = "What is the sigma square hall coefficient when Fidx is 3?" #0.000112127
+# question = "What is the maximum of conductivity?" #0.006048771
 
-prompt_txt = TASK1A_PROMPT.format(data=data, demonstrations="", question=question, answer="")
+prompt_txt = TASK1A_PROMPT.format(data=data, demonstrations=demonstrations, question=question, answer="")
+print("\nprompt_txt")
 print(prompt_txt)
 gen_parms_override = {"MAX_NEW_TOKENS": 200}
 
 generated_response = model.generate(prompt_txt, gen_parms_override)
 
 # print(GenTextParamsMetaNames().show())
+print("\nresult")
 print(generated_response["results"][0]["generated_text"].strip())
 print(eval(generated_response["results"][0]["generated_text"].strip()))
