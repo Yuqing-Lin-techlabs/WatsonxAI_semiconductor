@@ -54,7 +54,9 @@ def csv2txt(file_name):
 def csv2prompt_data(file_name: str,
                     column_list: list = None,
                     max_rows: int = None,
-                    separator: str = ' | '
+                    separator: str = ' | ',
+                    lowercase_column_headers: bool = False,
+                    replace_column_headers_space: bool = False
                     ):
     """
 
@@ -84,6 +86,10 @@ def csv2prompt_data(file_name: str,
             else:
                 if i == 0:
                     col_idx = [row.index(col.strip()) for col in column_list]
+                    if lowercase_column_headers:
+                        row = [elem.lower() for elem in row]
+                    if replace_column_headers_space:
+                        row = [elem.replace(' ', '_') for elem in row]
                 filtered = [elem for idx, elem in enumerate(row) if idx in col_idx]
                 prompt_data.append(separator.join(filtered))
 

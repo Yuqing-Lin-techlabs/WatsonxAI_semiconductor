@@ -14,5 +14,37 @@ def prompt(input):
 optical_density_txt_data = csv2prompt_data('TB_demo_v2.csv', column_list=['optical density'], max_rows=10)
 monitor_photo_txt_data = csv2prompt_data('TB_demo_v2.csv', column_list=['Monitor photo density'], max_rows=10)
 
+useful_column_list = [
+    "BatchID", "Fidx", "elapsed time", "optical density", "Monitor photo density", "sheet resistance",
+    "Hall resistance", "Hall resistivity", "conductivity", "Hall coefficient",
+    "sigma square hall coefficient",
+    "Hall density"
+]
+
+data = csv2prompt_data("TB_demo_v2.csv", column_list=useful_column_list, max_rows=0, lowercase_column_headers=False)
+examples = ''
+question = "Write a pandas dataframe query for finding the \"sigma square hall coefficient\" value when \"conductivity\" is 0.005789713"
+answer = ''
+
+template = f'''
+Answer the following question using only information from the table. If there is no good answer in the article, say 'I don't know'.
+
+Table:
+###
+{data}
+###
+
+{examples}
+
+Q: {question}
+A: {answer}
+'''
+
+print("--------Prompt--------")
+print(template)
+print("--------Answer--------")
+prompt(template)
+print("----------------------")
+
 # prompt('the correlation between ' + optical_density_txt_data + ' and ' + monitor_photo_txt_data)
-prompt('the optimal density: ' + optical_density_txt_data + ' what is the maxinum of the optical density ')
+# prompt('the optimal density: ' + optical_density_txt_data + ' what is the maxinum of the optical density ')
