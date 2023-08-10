@@ -55,6 +55,7 @@ def csv2prompt_data(file_name: str,
                     column_list: list = None,
                     max_rows: int = None,
                     separator: str = ' | ',
+                    header_row_idx: int = 0,
                     lowercase_column_headers: bool = False,
                     replace_column_headers_space: bool = False
                     ):
@@ -78,14 +79,18 @@ def csv2prompt_data(file_name: str,
     prompt_data = []
     with open(os.path.join(DATA_DIR, file_name), mode='r', newline='') as r:
         reader = csv.reader(r)
-        for i, row in enumerate(reader):
+        # get selected column idx
+        rows = list(reader)
+        if column_list is not None:
+            col_idx = [rows[header_row_idx].index(col.strip()) for col in column_list]
+        # keep selected column data
+        for i, row in enumerate(rows):
             if max_rows is not None and i >= max_rows + 1:
                 break
             if column_list is None:
                 prompt_data.append(separator.join(row))
             else:
-                if i == 0:
-                    col_idx = [row.index(col.strip()) for col in column_list]
+                if i == header_row_idx:
                     if lowercase_column_headers:
                         row = [elem.lower() for elem in row]
                     if replace_column_headers_space:

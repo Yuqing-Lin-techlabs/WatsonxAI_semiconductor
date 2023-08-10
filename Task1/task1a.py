@@ -19,12 +19,16 @@ all_column_list = ["BatchID", "Fidx", "elapsed time", "optical density", "Monito
 CLN_D = read_column_description()
 
 
-useful_column_list = ["BatchID", "Fidx", "elapsed time", "optical density", "Monitor photo density", "sheet resistance",
-                      "Hall resistance", "Hall resistivity", "conductivity", "Hall coefficient",
-                      "sigma square hall coefficient",
-                      "Hall density"]
-data= csv2prompt_data("TB_demo_v2.csv", column_list=useful_column_list, max_rows=10)
-df = pd.read_csv(os.path.join(DATA_DIR,"TB_demo_v2.csv"))
+# useful_column_list = ["BatchID", "Fidx", "elapsed time", "optical density", "Monitor photo density", "sheet resistance",
+#                       "Hall resistance", "Hall resistivity", "conductivity", "Hall coefficient",
+#                       "sigma square hall coefficient",
+#                       "Hall density"]
+useful_column_list = ["stage temperature", "sample temperature", "monitor temperature",
+                      "Rxx State", "Rxy State", "sheet resistance", "Hall resistance", "Hall coefficient",
+                      "Hall resistivity", "Hall (carrier) density", "Hall mobility"]
+filename = "CY02-PVK-06-THA-SUM2.csv" #CY02-PVK-06-THA-SUM2.csv, CY03-PVK-02_THA_SUM01.csv, TB_demo_v2.csv
+data= csv2prompt_data(filename, column_list=useful_column_list, max_rows=100, header_row_idx=1)
+df = pd.read_csv(os.path.join(DATA_DIR, filename))
 model = llm(model_id=ModelTypes.FLAN_UL2)
 
 demonstrations = ""
@@ -35,10 +39,11 @@ demonstrations = ""
 # Q: What is the "conductivity" when "Fidx" is 4?
 # A: 0.005780041
 # """
-question = "Write a pandas dataframe query for finding the \"sigma square hall coefficient\" value when \"conductivity\" is 0.005789713"
-# question = "What is the elapsed time when Fidx is 3?" #739085.5217
-# question = "What is the sigma square hall coefficient when Fidx is 3?" #0.000112127
-# question = "What is the maximum of conductivity?" #0.006048771
+# question = "Write a pandas dataframe query for finding the \"sigma square hall coefficient\" value when \"conductivity\" is 0.005789713"
+question = "what is the maximum different between sample temperature (Tsmp) and stage temperature (Tstg)?"
+# question = "What is the maximum longitudinal resistance (Rxx) at state 51?"
+# question = "What is the maximum resistivity?"
+# question = "What is the Carrier density of the point at maximum resistivity?"
 
 prompt_txt = TASK1A_PROMPT.format(data=data, demonstrations=demonstrations, question=question, answer="")
 print("\nprompt_txt")
@@ -50,4 +55,4 @@ generated_response = model.generate(prompt_txt, gen_parms_override)
 # print(GenTextParamsMetaNames().show())
 print("\nresult")
 print(generated_response["results"][0]["generated_text"].strip())
-print(eval(generated_response["results"][0]["generated_text"].strip()))
+# print(eval(generated_response["results"][0]["generated_text"].strip()))
